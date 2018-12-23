@@ -30,7 +30,11 @@ public class Main {
             logger.error(e.getLocalizedMessage(), e);
         }
 
+        // TODO API versioning
+        // TODO POST\PUT should return object that they've created or changed
+
         Spark.port(9999);
+        Spark.threadPool(10);
 
         // http://localhost:9999/parties?limit=10
         // http://localhost:9999/parties?page=2&limit=20
