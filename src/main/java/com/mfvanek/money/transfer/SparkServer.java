@@ -19,23 +19,38 @@ import spark.Spark;
 import javax.servlet.http.HttpServletResponse;
 import java.util.NoSuchElementException;
 
-public class Main {
+public final class SparkServer {
 
-    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+    private static final String WITHOUT_DATA = "do_not_generate_data";
+    private static final Logger logger = LoggerFactory.getLogger(SparkServer.class);
+
+    static void start() {
+        final String[] args = {WITHOUT_DATA};
+        SparkServer.main(args);
+        Spark.awaitInitialization();
+    }
+
+    static void stop() {
+        Spark.stop();
+        Spark.awaitStop();
+    }
 
     public static void main(String[] args) {
-        try {
-            Bank.getInstance().generateData();
-        } catch (Exception e) {
-            logger.error(e.getLocalizedMessage(), e);
-        }
+        generateData(args);
 
         // TODO API versioning
         // TODO POST\PUT should return object that they've created or changed
-
         Spark.port(9999);
         Spark.threadPool(10);
+        Spark.after((req, res) -> res.type("application/json"));
 
+        initPartyRoutes();
+        initAccountRoutes();
+        initTransactionRoutes();
+        initExceptionsHandling();
+    }
+
+    private static void initPartyRoutes() {
         // http://localhost:9999/parties?limit=10
         // http://localhost:9999/parties?page=2&limit=20
         Spark.get("/parties", (req, res) -> {
@@ -57,7 +72,9 @@ public class Main {
             final AccountsRepository accountsRepository = Bank.getInstance().getContext().getAccountsRepository();
             return JsonUtils.make().toJson(accountsRepository.getByHolder(party));
         });
+    }
 
+    private static void initAccountRoutes() {
         // http://localhost:9999/accounts?limit=10
         Spark.get("/accounts", (req, res) -> {
             final Repository<Account> repository = Bank.getInstance().getContext().getAccountsRepository();
@@ -79,7 +96,9 @@ public class Main {
             final PaginationParams pgParams = PaginationParams.from(req);
             return JsonUtils.make().toJson(transactionRepository.getByAccount(account, pgParams));
         });
+    }
 
+    private static void initTransactionRoutes() {
         // http://localhost:9999/transactions?limit=100
         Spark.get("/transactions", (req, res) -> {
             final Repository<Transaction> repository = Bank.getInstance().getContext().getTransactionRepository();
@@ -92,9 +111,9 @@ public class Main {
             final Repository<Transaction> repository = Bank.getInstance().getContext().getTransactionRepository();
             return JsonUtils.make().toJson(findById(Transaction.class, repository, req));
         });
+    }
 
-        Spark.after((req, res) -> res.type("application/json"));
-
+    private static void initExceptionsHandling() {
         Spark.exception(IllegalArgumentException.class, (e, req, res) ->
                 fillErrorInfo(res, e, HttpServletResponse.SC_BAD_REQUEST));
 
@@ -106,6 +125,18 @@ public class Main {
 
         Spark.exception(NoSuchElementException.class, (e, req, res) ->
                 fillErrorInfo(res, e, HttpServletResponse.SC_NOT_FOUND));
+    }
+
+    private static void generateData(String[] args) {
+        if (args != null && args.length > 0 && WITHOUT_DATA.equals(args[0].toLowerCase())) {
+            return;
+        }
+
+        try {
+            Bank.getInstance().generateData();
+        } catch (Exception e) {
+            logger.error(e.getLocalizedMessage(), e);
+        }
     }
 
     private static void fillErrorInfo(Response res, Exception err, int errCode) {

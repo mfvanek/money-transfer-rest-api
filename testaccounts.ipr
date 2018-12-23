@@ -212,6 +212,28 @@
         <root url="jar://$MAVEN_REPOSITORY$/com/sparkjava/spark-core/2.8.0/spark-core-2.8.0-sources.jar!/" />
       </SOURCES>
     </library>
+    <library name="Maven: commons-codec:commons-codec:1.10">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.10/commons-codec-1.10.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.10/commons-codec-1.10-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.10/commons-codec-1.10-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: commons-logging:commons-logging:1.2">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/commons-logging/commons-logging/1.2/commons-logging-1.2-sources.jar!/" />
+      </SOURCES>
+    </library>
     <library name="Maven: javax.servlet:javax.servlet-api:3.1.0">
       <CLASSES>
         <root url="jar://$MAVEN_REPOSITORY$/javax/servlet/javax.servlet-api/3.1.0/javax.servlet-api-3.1.0.jar!/" />
@@ -232,6 +254,28 @@
       </JAVADOC>
       <SOURCES>
         <root url="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.8.1/commons-lang3-3.8.1-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.httpcomponents:httpclient:4.5.6">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpclient/4.5.6/httpclient-4.5.6-sources.jar!/" />
+      </SOURCES>
+    </library>
+    <library name="Maven: org.apache.httpcomponents:httpcore:4.4.10">
+      <CLASSES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.10/httpcore-4.4.10.jar!/" />
+      </CLASSES>
+      <JAVADOC>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.10/httpcore-4.4.10-javadoc.jar!/" />
+      </JAVADOC>
+      <SOURCES>
+        <root url="jar://$MAVEN_REPOSITORY$/org/apache/httpcomponents/httpcore/4.4.10/httpcore-4.4.10-sources.jar!/" />
       </SOURCES>
     </library>
     <library name="Maven: org.apiguardian:apiguardian-api:1.0.0">
