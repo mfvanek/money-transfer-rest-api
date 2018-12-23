@@ -1,2 +1,2 @@
-# money-transfer-rest-api
-Simple implementation of RESTful API for money transfers between accounts
+POST\PUT should return object that they've created or changed
+защита от множественной отправки данных (multiple POSTs)
