@@ -123,6 +123,7 @@ final class SparkServer {
             return JsonUtils.make().toJson(findById(Transaction.class, repository, req));
         });
 
+        // http://localhost:9999/transactions
         Spark.post("/transactions", (req, res) -> {
             final TransactionPayload payload = JsonUtils.make().fromJson(req.body(), TransactionPayload.class);
             final Transaction trn = Bank.getInstance().transfer(payload);

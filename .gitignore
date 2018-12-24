@@ -1,2 +1,3 @@
 /target
 *.iws
+/dependency-reduced-pom.xml

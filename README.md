@@ -24,8 +24,18 @@ Design and implement a RESTful API (including data model and the backing impleme
 - [Apache HttpClient](https://hc.apache.org/index.html) (for unit testing)
 
 ## How to run
+- java -jar ".\target\test-accounts-1.0-SNAPSHOT.jar"
 
 ## Available services
+- GET [http://localhost:9999/parties?limit=10](http://localhost:9999/parties?limit=10)
+- GET [http://localhost:9999/parties/1](http://localhost:9999/parties/1)
+- GET [http://localhost:9999/parties/1/accounts](http://localhost:9999/parties/1/accounts)
+- GET [http://localhost:9999/accounts?limit=10](http://localhost:9999/accounts?limit=10)
+- GET [http://localhost:9999/accounts/1](http://localhost:9999/accounts/1)
+- GET [http://localhost:9999/accounts/1/transactions?limit=100](http://localhost:9999/accounts/1/transactions?limit=100)
+- GET [http://localhost:9999/transactions?limit=100](http://localhost:9999/transactions?limit=100)
+- GET [http://localhost:9999/transactions/1](http://localhost:9999/transactions/1)
+- POST [http://localhost:9999/transactions](http://localhost:9999/transactions)
 
 ### Pagination
 - [http://localhost:9999/parties?limit=10](http://localhost:9999/parties?limit=10)
@@ -33,6 +43,9 @@ Design and implement a RESTful API (including data model and the backing impleme
 - [http://localhost:9999/accounts/1/transactions?limit=100](http://localhost:9999/accounts/1/transactions?limit=100)
 
 ## Http status
+- 200 OK
+- 400 Bad request
+- 404 Not found
 
 ## Notes
 - Using Russian bank accounts
