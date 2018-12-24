@@ -3,14 +3,11 @@
  * https://github.com/mfvanek
  */
 
-package com.mfvanek.money.transfer.utils;
+package com.mfvanek.money.transfer.repositories;
 
 import com.mfvanek.money.transfer.interfaces.repositories.AccountsRepository;
 import com.mfvanek.money.transfer.interfaces.repositories.PartyRepository;
 import com.mfvanek.money.transfer.interfaces.repositories.TransactionRepository;
-import com.mfvanek.money.transfer.repositories.DefaultAccountsRepository;
-import com.mfvanek.money.transfer.repositories.DefaultPartyRepository;
-import com.mfvanek.money.transfer.repositories.DefaultTransactionRepository;
 import lombok.Getter;
 
 @Getter

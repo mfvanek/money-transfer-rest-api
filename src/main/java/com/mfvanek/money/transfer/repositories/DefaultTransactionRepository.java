@@ -18,7 +18,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Predicate;
 
-public class DefaultTransactionRepository implements TransactionRepository {
+final class DefaultTransactionRepository implements TransactionRepository {
 
     private final AtomicLong counter = new AtomicLong(0L);
     private final ConcurrentMap<Long, Transaction> transactions = new ConcurrentHashMap<>();

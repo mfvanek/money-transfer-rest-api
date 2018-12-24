@@ -9,8 +9,6 @@ import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.Party;
 import com.mfvanek.money.transfer.interfaces.repositories.AccountsRepository;
 import com.mfvanek.money.transfer.interfaces.repositories.PartyRepository;
-import com.mfvanek.money.transfer.utils.BaseTest;
-import com.mfvanek.money.transfer.utils.Context;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -20,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class AccountsRepositoryTest extends BaseTest {
+class AccountsRepositoryTest {
 
     @Test
     void getInitialBalance() {

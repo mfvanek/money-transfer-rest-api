@@ -14,13 +14,13 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
-public class DefaultPartyRepository implements PartyRepository {
+final class DefaultPartyRepository implements PartyRepository {
 
     private final AtomicLong counter = new AtomicLong(0L);
     private final ConcurrentMap<Long, Party> parties = new ConcurrentHashMap<>();
     private final Long ourBankId;
 
-    public DefaultPartyRepository() {
+    DefaultPartyRepository() {
         final Party ourBank = addLegalPerson("7703408188", "Revolut LLC");
         ourBankId = ourBank.getId();
     }

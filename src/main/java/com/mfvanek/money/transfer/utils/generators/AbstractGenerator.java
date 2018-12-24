@@ -5,7 +5,7 @@
 
 package com.mfvanek.money.transfer.utils.generators;
 
-import com.mfvanek.money.transfer.utils.Context;
+import com.mfvanek.money.transfer.repositories.Context;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -9,7 +9,7 @@ import com.mfvanek.money.transfer.enums.Chapter;
 import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.repositories.PartyRepository;
 import com.mfvanek.money.transfer.models.currencies.BaseCurrency;
-import com.mfvanek.money.transfer.repositories.DefaultPartyRepository;
+import com.mfvanek.money.transfer.repositories.Context;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -21,7 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class RussianAccountTest {
 
-    private final PartyRepository repository = new DefaultPartyRepository();
+    private final PartyRepository repository = Context.create().getPartyRepository();
 
     @Test
     void getChapter() {

@@ -8,7 +8,7 @@ package com.mfvanek.money.transfer.utils.generators;
 import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.Party;
 import com.mfvanek.money.transfer.interfaces.repositories.AccountsRepository;
-import com.mfvanek.money.transfer.utils.Context;
+import com.mfvanek.money.transfer.repositories.Context;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;

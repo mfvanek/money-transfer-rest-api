@@ -27,7 +27,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
-public class DefaultAccountsRepository implements AccountsRepository {
+final class DefaultAccountsRepository implements AccountsRepository {
 
     private static final Logger logger = LoggerFactory.getLogger(DefaultAccountsRepository.class);
     private static final BigDecimal INITIAL_BALANCE = BigDecimal.valueOf(100_000_000.00d);
@@ -37,7 +37,7 @@ public class DefaultAccountsRepository implements AccountsRepository {
     private final PartyRepository partyRepository;
     private final Long ourBankAccountId;
 
-    public DefaultAccountsRepository(PartyRepository partyRepository) {
+    DefaultAccountsRepository(PartyRepository partyRepository) {
         this.partyRepository = partyRepository;
         this.counter = new AtomicLong(0L);
         this.accounts = new ConcurrentHashMap<>();
