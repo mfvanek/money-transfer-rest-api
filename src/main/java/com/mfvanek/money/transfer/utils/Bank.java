@@ -6,19 +6,22 @@
 package com.mfvanek.money.transfer.utils;
 
 import com.mfvanek.money.transfer.interfaces.Account;
+import com.mfvanek.money.transfer.interfaces.Transaction;
+import com.mfvanek.money.transfer.interfaces.repositories.Repository;
 import com.mfvanek.money.transfer.repositories.Context;
 import com.mfvanek.money.transfer.utils.generators.DataGenerator;
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public final class Bank {
 
     @Getter
     private final Context context;
 
-    private Bank() {
-        this.context = Context.create();
+    private Bank(Context context) {
+        this.context = context;
     }
 
     public void generateData() {
@@ -29,13 +32,18 @@ public final class Bank {
                 .generate();
     }
 
-    public boolean transfer(Account debit, Account credit, BigDecimal amount) {
+    public Transaction transfer(Long debitId, Long creditId, BigDecimal amount) {
+        Objects.requireNonNull(debitId, "Payer account ID cannot be null");
+        Objects.requireNonNull(creditId, "Recipient account ID cannot be null");
+        Objects.requireNonNull(amount, "Amount of the transaction cannot be null");
         // TODO
-        return false;
+        final Repository<Account> accountRepository = context.getAccountsRepository();
+
+        throw new UnsupportedOperationException("");
     }
 
     private static class LazyHolder {
-        static final Bank INSTANCE = new Bank();
+        static final Bank INSTANCE = new Bank(Context.create());
     }
 
     public static Bank getInstance() {

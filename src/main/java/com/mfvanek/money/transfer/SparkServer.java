@@ -116,6 +116,10 @@ final class SparkServer {
             final Repository<Transaction> repository = Bank.getInstance().getContext().getTransactionRepository();
             return JsonUtils.make().toJson(findById(Transaction.class, repository, req));
         });
+
+        Spark.post("/transactions", (req, res) -> {
+            throw new UnsupportedOperationException("");
+        });
     }
 
     private static void initExceptionsHandling() {
