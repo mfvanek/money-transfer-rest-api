@@ -12,7 +12,7 @@ import com.mfvanek.money.transfer.repositories.Context;
 import com.mfvanek.money.transfer.utils.generators.DataGenerator;
 import lombok.Getter;
 
-import java.math.BigDecimal;
+import java.util.NoSuchElementException;
 import java.util.Objects;
 
 public final class Bank {
@@ -32,14 +32,24 @@ public final class Bank {
                 .generate();
     }
 
-    public Transaction transfer(Long debitId, Long creditId, BigDecimal amount) {
-        Objects.requireNonNull(debitId, "Payer account ID cannot be null");
-        Objects.requireNonNull(creditId, "Recipient account ID cannot be null");
-        Objects.requireNonNull(amount, "Amount of the transaction cannot be null");
-        // TODO
-        final Repository<Account> accountRepository = context.getAccountsRepository();
+    public Transaction transfer(TransactionPayload payload) {
+        Objects.requireNonNull(payload, "Transaction data cannot be null");
 
-        throw new UnsupportedOperationException("");
+        final Repository<Account> accountRepository = context.getAccountsRepository();
+        final Account debit = accountRepository.getById(payload.getDebitAccountId());
+        validateAccount(debit, payload.getDebitAccountId());
+        final Account credit = accountRepository.getById(payload.getCreditAccountId());
+        validateAccount(credit, payload.getCreditAccountId());
+
+        final Transaction trn = context.getTransactionRepository().add(debit, credit, payload.getAmount());
+        trn.run();
+        return trn;
+    }
+
+    private void validateAccount(Account account, Long id) {
+        if (account.isNotValid()) {
+            throw new NoSuchElementException(String.format("Account with id %d is not found", id));
+        }
     }
 
     private static class LazyHolder {

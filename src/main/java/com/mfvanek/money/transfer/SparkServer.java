@@ -15,6 +15,7 @@ import com.mfvanek.money.transfer.interfaces.repositories.TransactionRepository;
 import com.mfvanek.money.transfer.utils.Bank;
 import com.mfvanek.money.transfer.utils.JsonUtils;
 import com.mfvanek.money.transfer.utils.PaginationParams;
+import com.mfvanek.money.transfer.utils.TransactionPayload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import spark.Request;
@@ -32,6 +33,11 @@ final class SparkServer {
     static void start() {
         final String[] args = {WITHOUT_DATA};
         SparkServer.main(args);
+        Spark.awaitInitialization();
+    }
+
+    static void startWithData() {
+        SparkServer.main(null);
         Spark.awaitInitialization();
     }
 
@@ -118,7 +124,9 @@ final class SparkServer {
         });
 
         Spark.post("/transactions", (req, res) -> {
-            throw new UnsupportedOperationException("");
+            final TransactionPayload payload = JsonUtils.make().fromJson(req.body(), TransactionPayload.class);
+            final Transaction trn = Bank.getInstance().transfer(payload);
+            return JsonUtils.make().toJson(trn);
         });
     }
 

@@ -10,6 +10,7 @@ import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.repositories.PartyRepository;
 import com.mfvanek.money.transfer.models.currencies.BaseCurrency;
 import com.mfvanek.money.transfer.repositories.Context;
+import com.mfvanek.money.transfer.utils.JsonUtils;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
@@ -100,6 +101,30 @@ class RussianAccountTest {
         assertTrue(a.toString().contains(", chapter="));
         assertEquals("RussianAccount{id=1, currency=BaseCurrency(isoCode=RUB), number=30102810100000000001, active=true, balance=0, holder=Party{Revolut LLC, type=LEGAL_PERSON, tax identification number=7703408188, id=1}, chapter=BALANCE}",
                 a.toString());
+    }
+
+    @Test
+    void lockShouldBeTransient() {
+        final Account a = makeAccount();
+        final String json = JsonUtils.make().toJson(a);
+        assertNotNull(json);
+        assertFalse(json.contains("lock"));
+        assertEquals("{\n" +
+                "  \"chapter\": \"BALANCE\",\n" +
+                "  \"id\": 1,\n" +
+                "  \"currency\": {\n" +
+                "    \"isoCode\": \"RUB\"\n" +
+                "  },\n" +
+                "  \"number\": \"30102810100000000001\",\n" +
+                "  \"holder\": {\n" +
+                "    \"name\": \"Revolut LLC\",\n" +
+                "    \"id\": 1,\n" +
+                "    \"partyType\": \"LEGAL_PERSON\",\n" +
+                "    \"taxIdentificationNumber\": \"7703408188\"\n" +
+                "  },\n" +
+                "  \"active\": true,\n" +
+                "  \"balance\": 0\n" +
+                "}", json);
     }
 
     private RussianAccount makeAccount() {

@@ -29,7 +29,7 @@ public abstract class AbstractAccount implements Account {
     private final Party holder;
     private final boolean active;
     private BigDecimal balance;
-    private final Lock lock;
+    private final transient Lock lock;
 
     AbstractAccount(Long id, Currency currency, String number,
                     Party holder, boolean active, BigDecimal balance) {
