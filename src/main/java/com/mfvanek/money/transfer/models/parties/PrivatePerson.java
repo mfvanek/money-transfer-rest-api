@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * https://github.com/mfvanek
+ */
+
 package com.mfvanek.money.transfer.models.parties;
 
 import com.mfvanek.money.transfer.enums.PartyType;
@@ -12,7 +17,7 @@ abstract class PrivatePerson extends AbstractParty {
     private final String lastName;
 
     PrivatePerson(Long id, String taxIdentificationNumber, String firstName, String lastName) {
-        super(id, PartyType.LEGAL_PERSON, taxIdentificationNumber);
+        super(id, PartyType.PRIVATE_PERSON, taxIdentificationNumber);
         Objects.requireNonNull(firstName, "First name cannot be null");
         Objects.requireNonNull(lastName, "Last name cannot be null");
         this.firstName = firstName;

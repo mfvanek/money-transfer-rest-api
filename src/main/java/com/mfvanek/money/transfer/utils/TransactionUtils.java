@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * https://github.com/mfvanek
+ */
+
 package com.mfvanek.money.transfer.utils;
 
 import org.apache.commons.lang3.tuple.Pair;

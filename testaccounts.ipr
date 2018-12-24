@@ -13,7 +13,13 @@
       <module name="testaccounts" target="1.8" />
     </bytecodeTargetLevel>
   </component>
-  <component name="CopyrightManager" default="mfvanek" />
+  <component name="CopyrightManager" default="mfvanek">
+    <copyright>
+      <option name="notice" value="Copyright (c) &amp;#36;today.year. Ivan Vakhrushev. All rights reserved.&#10;https://github.com/mfvanek" />
+      <option name="myName" value="mfvanek" />
+    </copyright>
+  </component>
+  <component name="Encoding" addBOMForNewFiles="with NO BOM" />
   <component name="ExternalStorageConfigurationManager" enabled="true" />
   <component name="InspectionProjectProfileManager">
     <profile version="1.0">

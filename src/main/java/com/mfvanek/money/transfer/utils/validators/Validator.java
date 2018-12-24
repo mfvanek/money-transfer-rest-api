@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * https://github.com/mfvanek
+ */
+
 package com.mfvanek.money.transfer.utils.validators;
 
 import com.mfvanek.money.transfer.interfaces.Account;
+import com.mfvanek.money.transfer.interfaces.Currency;
 
 import java.math.BigDecimal;
 import java.util.Collection;
@@ -61,6 +67,12 @@ public class Validator {
     public static <T> void validatePageableContentSize(final Collection<T> pageableContent, final int recordsPerPage) {
         if (pageableContent.size() > recordsPerPage + 1) {
             throw new IllegalArgumentException("Pageable content size is too big");
+        }
+    }
+
+    public static void validateCurrencyCode(String isoCode) {
+        if (isoCode.length() != Currency.ISO_CODE_LENGTH) {
+            throw new IllegalArgumentException("Currency code have to have length equals to " + Currency.ISO_CODE_LENGTH);
         }
     }
 }

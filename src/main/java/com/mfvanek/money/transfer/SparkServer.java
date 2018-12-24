@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * https://github.com/mfvanek
+ */
+
 package com.mfvanek.money.transfer;
 
 import com.mfvanek.money.transfer.interfaces.Account;
@@ -19,7 +24,7 @@ import spark.Spark;
 import javax.servlet.http.HttpServletResponse;
 import java.util.NoSuchElementException;
 
-public final class SparkServer {
+final class SparkServer {
 
     private static final String WITHOUT_DATA = "do_not_generate_data";
     private static final Logger logger = LoggerFactory.getLogger(SparkServer.class);

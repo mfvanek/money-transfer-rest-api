@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * https://github.com/mfvanek
+ */
+
 package com.mfvanek.money.transfer.models.accounts;
 
 import com.mfvanek.money.transfer.interfaces.Account;
@@ -5,10 +10,12 @@ import com.mfvanek.money.transfer.interfaces.Identifiable;
 import com.mfvanek.money.transfer.models.currencies.BaseCurrency;
 import com.mfvanek.money.transfer.models.parties.AbstractParty;
 
+import java.math.BigDecimal;
+
 final class InvalidAccount extends AbstractAccount {
 
     private InvalidAccount() {
-        super(Identifiable.INVALID_ID, BaseCurrency.getInvalid(), "", AbstractParty.getInvalid(), false);
+        super(Identifiable.INVALID_ID, BaseCurrency.getInvalid(), "", AbstractParty.getInvalid(), false, BigDecimal.ZERO);
     }
 
     @Override

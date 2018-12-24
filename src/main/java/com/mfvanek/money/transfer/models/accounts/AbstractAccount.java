@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * https://github.com/mfvanek
+ */
+
 package com.mfvanek.money.transfer.models.accounts;
 
 import com.mfvanek.money.transfer.consts.Consts;
@@ -42,10 +47,6 @@ public abstract class AbstractAccount implements Account {
         this.active = active;
         this.balance = balance;
         this.lock = new ReentrantLock();
-    }
-
-    AbstractAccount(Long id, Currency currency, String number, Party holder, boolean active) {
-        this(id, currency, number, holder, active, BigDecimal.ZERO);
     }
 
     @Override

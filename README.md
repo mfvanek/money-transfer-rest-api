@@ -14,21 +14,23 @@ Design and implement a RESTful API (including data model and the backing impleme
 
 ## Technology stack
 - Java 8
-- Maven
+- [Maven](https://maven.apache.org/)
 - [Spark Framework](http://sparkjava.com) (with embedded Jetty)
 - [Logback](https://logback.qos.ch)
 - [Lombok](https://projectlombok.org)
 - [google/gson](https://github.com/google/gson)
 - **Hand-written in-memory data storage using concurrency utilities**
+- [JUnit 5](https://junit.org/junit5/)
+- [Apache HttpClient](https://hc.apache.org/index.html) (for unit testing)
 
 ## How to run
 
 ## Available services
 
 ### Pagination
-[http://localhost:9999/parties?limit=10](http://localhost:9999/parties?limit=10)  
-[http://localhost:9999/parties?page=2&limit=20](http://localhost:9999/parties?page=2&limit=20)
-[http://localhost:9999/accounts/1/transactions?limit=100](http://localhost:9999/accounts/1/transactions?limit=100)
+- [http://localhost:9999/parties?limit=10](http://localhost:9999/parties?limit=10)
+- [http://localhost:9999/parties?page=2&limit=20](http://localhost:9999/parties?page=2&limit=20)
+- [http://localhost:9999/accounts/1/transactions?limit=100](http://localhost:9999/accounts/1/transactions?limit=100)
 
 ## Http status
 

@@ -1,6 +1,12 @@
+/*
+ * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * https://github.com/mfvanek
+ */
+
 package com.mfvanek.money.transfer.models.currencies;
 
 import com.mfvanek.money.transfer.interfaces.Currency;
+import com.mfvanek.money.transfer.utils.validators.Validator;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
@@ -12,7 +18,6 @@ import java.util.concurrent.ConcurrentMap;
 @EqualsAndHashCode
 public class BaseCurrency implements Currency {
 
-    private static final int ISO_CODE_LENGTH = 3;
     private static final ConcurrentMap<String, Currency> CURRENCIES = new ConcurrentHashMap<>();
 
     private final String isoCode;
@@ -33,20 +38,14 @@ public class BaseCurrency implements Currency {
 
     public static Currency valueOf(String isoCode) {
         Objects.requireNonNull(isoCode, "Currency code cannot be null");
-        validateCode(isoCode);
+        Validator.validateCurrencyCode(isoCode);
 
         final String code = isoCode.toUpperCase();
         Currency currency = CURRENCIES.get(code);
         if (currency == null) {
-            currency = CURRENCIES.computeIfAbsent(code, BaseCurrency::new);
+            currency = CURRENCIES.computeIfAbsent(code, (k) -> new BaseCurrency(code));
         }
         return currency;
-    }
-
-    private static void validateCode(String isoCode) {
-        if (isoCode.length() != ISO_CODE_LENGTH) {
-            throw new IllegalArgumentException("Currency code have to have length equals to " + ISO_CODE_LENGTH);
-        }
     }
 
     public static Currency getInvalid() {
