@@ -127,6 +127,8 @@ final class SparkServer {
         Spark.post("/transactions", (req, res) -> {
             final TransactionPayload payload = JsonUtils.make().fromJson(req.body(), TransactionPayload.class);
             final Transaction trn = Bank.getInstance().transfer(payload);
+            res.status(HttpServletResponse.SC_CREATED);
+            res.header("Location", "/transactions/" + trn.getId());
             return JsonUtils.make().toJson(trn);
         });
     }

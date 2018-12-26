@@ -8,6 +8,7 @@ package com.mfvanek.money.transfer;
 import com.mfvanek.money.transfer.utils.JsonUtils;
 import com.mfvanek.money.transfer.utils.TransactionPayload;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
@@ -47,7 +48,8 @@ class TransferMoneyTest {
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
             try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-                assertEquals(200, response.getStatusLine().getStatusCode());
+                assertEquals(HttpStatus.SC_CREATED, response.getStatusLine().getStatusCode());
+                assertTrue(response.containsHeader("Location"));
                 final HttpEntity entity = response.getEntity();
                 assertNotNull(entity);
                 assertEquals("application/json", entity.getContentType().getValue());

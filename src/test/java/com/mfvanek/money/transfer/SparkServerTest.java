@@ -8,6 +8,7 @@ package com.mfvanek.money.transfer;
 import com.mfvanek.money.transfer.utils.JsonUtils;
 import com.mfvanek.money.transfer.utils.TransactionPayload;
 import org.apache.http.HttpEntity;
+import org.apache.http.HttpStatus;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
@@ -41,7 +42,7 @@ class SparkServerTest {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             final HttpGet httpget = new HttpGet("http://localhost:9999/parties?limit=10");
             try (CloseableHttpResponse response = httpClient.execute(httpget)) {
-                assertEquals(200, response.getStatusLine().getStatusCode());
+                assertEquals(HttpStatus.SC_OK, response.getStatusLine().getStatusCode());
                 final HttpEntity entity = response.getEntity();
                 assertNotNull(entity);
                 assertEquals("application/json", entity.getContentType().getValue());
@@ -68,7 +69,7 @@ class SparkServerTest {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             final HttpGet httpget = new HttpGet("http://localhost:9999/parties?page=2&limit=20");
             try (CloseableHttpResponse response = httpClient.execute(httpget)) {
-                assertEquals(200, response.getStatusLine().getStatusCode());
+                assertEquals(HttpStatus.SC_OK, response.getStatusLine().getStatusCode());
                 final HttpEntity entity = response.getEntity();
                 assertNotNull(entity);
                 assertEquals("application/json", entity.getContentType().getValue());
@@ -88,7 +89,7 @@ class SparkServerTest {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             final HttpGet httpget = new HttpGet("http://localhost:9999/parties?page=0&limit=20");
             try (CloseableHttpResponse response = httpClient.execute(httpget)) {
-                assertEquals(400, response.getStatusLine().getStatusCode());
+                assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
                 final HttpEntity entity = response.getEntity();
                 assertNotNull(entity);
                 assertEquals("application/json", entity.getContentType().getValue());
@@ -106,7 +107,7 @@ class SparkServerTest {
         try (CloseableHttpClient httpClient = HttpClients.createDefault()) {
             final HttpGet httpget = new HttpGet("http://localhost:9999/parties");
             try (CloseableHttpResponse response = httpClient.execute(httpget)) {
-                assertEquals(400, response.getStatusLine().getStatusCode());
+                assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
                 final HttpEntity entity = response.getEntity();
                 assertNotNull(entity);
                 assertEquals("application/json", entity.getContentType().getValue());
@@ -130,7 +131,7 @@ class SparkServerTest {
             httpPost.setHeader("Accept", "application/json");
             httpPost.setHeader("Content-type", "application/json");
             try (CloseableHttpResponse response = httpClient.execute(httpPost)) {
-                assertEquals(400, response.getStatusLine().getStatusCode());
+                assertEquals(HttpStatus.SC_BAD_REQUEST, response.getStatusLine().getStatusCode());
                 final HttpEntity entity = response.getEntity();
                 assertNotNull(entity);
                 assertEquals("application/json", entity.getContentType().getValue());
