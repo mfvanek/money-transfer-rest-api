@@ -1,5 +1,11 @@
 # Simple implementation of RESTful API for money transfers between accounts.
 
+#Important
+1. Should be rewritten for using of JAXRS
+1. Replace **Hand-written in-memory data storage** with H2 or Embedded PostgreSQL
+1. Add Swagger for API documentation
+1. Upgrade for Java 9
+
 ## Task
 Design and implement a RESTful API (including data model and the backing implementation) for money transfers between accounts.
 
