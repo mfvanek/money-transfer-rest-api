@@ -1,6 +1,6 @@
 # Simple implementation of RESTful API for money transfers between accounts.
 
-#Important
+## Important
 1. Should be rewritten for using of JAXRS
 1. Replace **Hand-written in-memory data storage** with H2 or Embedded PostgreSQL
 1. Add Swagger for API documentation
