@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * Copyright (c) 2018-2021. Ivan Vakhrushev. All rights reserved.
  * https://github.com/mfvanek
  */
 
@@ -7,7 +7,7 @@ package com.mfvanek.money.transfer.interfaces.repositories;
 
 import com.mfvanek.money.transfer.interfaces.Party;
 
-public interface PartyRepository extends Repository<Party> {
+public interface PartyRepository extends Repository<Party>, Cleanable {
 
     Party addLegalPerson(String taxIdentificationNumber, String name);
 

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * Copyright (c) 2018-2021. Ivan Vakhrushev. All rights reserved.
  * https://github.com/mfvanek
  */
 
@@ -10,7 +10,7 @@ import com.mfvanek.money.transfer.interfaces.Transaction;
 
 import java.math.BigDecimal;
 
-public interface TransactionRepository extends Repository<Transaction> {
+public interface TransactionRepository extends Repository<Transaction>, Cleanable {
 
     Transaction add(Account debit, Account credit, BigDecimal amount);
 

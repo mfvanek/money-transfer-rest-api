@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * Copyright (c) 2018-2021. Ivan Vakhrushev. All rights reserved.
  * https://github.com/mfvanek
  */
 
@@ -63,5 +63,11 @@ final class DefaultPartyRepository implements PartyRepository {
     @Override
     public int size() {
         return parties.size();
+    }
+
+    @Override
+    public void clear() {
+        parties.keySet().removeIf(k -> !k.equals(ourBankId));
+        counter.set(ourBankId);
     }
 }

@@ -5,11 +5,7 @@
 
 package com.mfvanek.money.transfer.interfaces.repositories;
 
-public interface Repository<T> extends Pageable<T> {
+public interface Cleanable {
 
-    int size();
-
-    T getById(Long id);
-
-    T getInvalid();
+  void clear();
 }

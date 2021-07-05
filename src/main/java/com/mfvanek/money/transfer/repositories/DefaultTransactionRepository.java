@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * Copyright (c) 2018-2021. Ivan Vakhrushev. All rights reserved.
  * https://github.com/mfvanek
  */
 
@@ -55,5 +55,11 @@ final class DefaultTransactionRepository implements TransactionRepository {
         Objects.requireNonNull(account, "Account cannot be null");
         Predicate<Transaction> predicate = t -> t.getDebit().equals(account) || t.getCredit().equals(account);
         return PagedResultImpl.from(pageNumber, recordsPerPage, transactions, predicate);
+    }
+
+    @Override
+    public void clear() {
+        counter.set(0L);
+        transactions.clear();
     }
 }

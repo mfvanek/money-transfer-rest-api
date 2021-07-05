@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * Copyright (c) 2018-2021. Ivan Vakhrushev. All rights reserved.
  * https://github.com/mfvanek
  */
 
@@ -148,7 +148,7 @@ final class SparkServer {
     }
 
     private static void generateData(String[] args) {
-        if (args != null && args.length > 0 && WITHOUT_DATA.equals(args[0].toLowerCase())) {
+        if (args != null && args.length > 0 && WITHOUT_DATA.equalsIgnoreCase(args[0])) {
             return;
         }
 

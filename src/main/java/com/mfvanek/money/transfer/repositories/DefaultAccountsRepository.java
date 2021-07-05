@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2018. Ivan Vakhrushev. All rights reserved.
+ * Copyright (c) 2018-2021. Ivan Vakhrushev. All rights reserved.
  * https://github.com/mfvanek
  */
 
@@ -10,6 +10,7 @@ import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.Currency;
 import com.mfvanek.money.transfer.interfaces.Party;
 import com.mfvanek.money.transfer.interfaces.repositories.AccountsRepository;
+import com.mfvanek.money.transfer.interfaces.repositories.Cleanable;
 import com.mfvanek.money.transfer.interfaces.repositories.PagedResult;
 import com.mfvanek.money.transfer.interfaces.repositories.PartyRepository;
 import com.mfvanek.money.transfer.models.accounts.AbstractAccount;
@@ -129,5 +130,12 @@ final class DefaultAccountsRepository implements AccountsRepository {
                 .filter(a -> a.getHolder().equals(holder))
                 .sorted(Comparator.comparing(Account::getId))
                 .collect(Collectors.toList()));
+    }
+
+    @Override
+    public void clear() {
+        // TODO Initial balance is not restored
+        accounts.keySet().removeIf(k -> !k.equals(ourBankAccountId));
+        counter.set(ourBankAccountId);
     }
 }
