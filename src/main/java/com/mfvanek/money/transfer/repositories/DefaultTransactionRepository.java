@@ -56,4 +56,10 @@ final class DefaultTransactionRepository implements TransactionRepository {
         Predicate<Transaction> predicate = t -> t.getDebit().equals(account) || t.getCredit().equals(account);
         return PagedResultImpl.from(pageNumber, recordsPerPage, transactions, predicate);
     }
+
+    @Override
+    public void clear() {
+        counter.set(0L);
+        transactions.clear();
+    }
 }

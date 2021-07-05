@@ -12,7 +12,7 @@ import com.mfvanek.money.transfer.interfaces.Party;
 import java.math.BigDecimal;
 import java.util.Collection;
 
-public interface AccountsRepository extends Repository<Account> {
+public interface AccountsRepository extends Repository<Account>, Cleanable {
 
     Account addOurBankAccount(Currency currency, String number, BigDecimal balance);
 

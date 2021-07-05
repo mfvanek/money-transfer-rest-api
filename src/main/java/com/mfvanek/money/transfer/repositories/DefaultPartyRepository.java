@@ -64,4 +64,10 @@ final class DefaultPartyRepository implements PartyRepository {
     public int size() {
         return parties.size();
     }
+
+    @Override
+    public void clear() {
+        parties.keySet().removeIf(k -> !k.equals(ourBankId));
+        counter.set(ourBankId);
+    }
 }

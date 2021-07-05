@@ -148,7 +148,7 @@ final class SparkServer {
     }
 
     private static void generateData(String[] args) {
-        if (args != null && args.length > 0 && WITHOUT_DATA.equals(args[0].toLowerCase())) {
+        if (args != null && args.length > 0 && WITHOUT_DATA.equalsIgnoreCase(args[0])) {
             return;
         }
 

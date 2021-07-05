@@ -5,6 +5,7 @@
 
 package com.mfvanek.money.transfer;
 
+import com.mfvanek.money.transfer.utils.Bank;
 import com.mfvanek.money.transfer.utils.JsonUtils;
 import com.mfvanek.money.transfer.utils.TransactionPayload;
 import org.apache.http.HttpEntity;
