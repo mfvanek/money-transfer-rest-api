@@ -1,5 +1,8 @@
 # Simple implementation of RESTful API for money transfers between accounts.
 
+[![Java CI](https://github.com/mfvanek/money-transfer-rest-api/actions/workflows/tests.yml/badge.svg)](https://github.com/mfvanek/money-transfer-rest-api/actions/workflows/tests.yml)
+[![codecov](https://codecov.io/gh/mfvanek/money-transfer-rest-api/branch/master/graph/badge.svg?token=M07PR66QAP)](https://codecov.io/gh/mfvanek/money-transfer-rest-api)
+
 ## Important
 1. Should be rewritten for using of JAXRS
 1. Replace **Hand-written in-memory data storage** with H2 or Embedded PostgreSQL
