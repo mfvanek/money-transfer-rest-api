@@ -4,7 +4,6 @@
 1. Should be rewritten for using of JAXRS
 1. Replace **Hand-written in-memory data storage** with H2 or Embedded PostgreSQL
 1. Add Swagger for API documentation
-1. Upgrade for Java 9
 
 ## Task
 Design and implement a RESTful API (including data model and the backing implementation) for money transfers between accounts.
@@ -19,7 +18,7 @@ Design and implement a RESTful API (including data model and the backing impleme
 1. Demonstrate with tests that the API works as expected.
 
 ## Technology stack
-- Java 8
+- Java 11
 - [Maven](https://maven.apache.org/)
 - [Spark Framework](http://sparkjava.com) (with embedded Jetty)
 - [Logback](https://logback.qos.ch)
