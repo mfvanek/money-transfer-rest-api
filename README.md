@@ -5,20 +5,20 @@
 
 ## Important
 1. Should be rewritten for using of JAXRS
-1. Replace **Hand-written in-memory data storage** with H2 or Embedded PostgreSQL
-1. Add Swagger for API documentation
+2. Replace **Hand-written in-memory data storage** with H2 or Embedded PostgreSQL
+3. Add Swagger for API documentation
 
 ## Task
 Design and implement a RESTful API (including data model and the backing implementation) for money transfers between accounts.
 
 ### Explicit requirements:
 1. You can use Java, Scala or Kotlin.
-1. Keep it simple and to the point (e.g. no need to implement any authentication).
-1. Assume the API is invoked by multiple systems and services on behalf of end users.
-1. You can use frameworks/libraries if you like (except Spring), but don't forget about requirement #2 – keep it simple and avoid heavy frameworks.
-1. The datastore should run in-memory for the sake of this test.
-1. The final result should be executable as a standalone program (should not require a pre-installed container/server).
-1. Demonstrate with tests that the API works as expected.
+2. Keep it simple and to the point (e.g. no need to implement any authentication).
+3. Assume the API is invoked by multiple systems and services on behalf of end users.
+4. You can use frameworks/libraries if you like (except Spring), but don't forget about requirement #2 – keep it simple and avoid heavy frameworks.
+5. The datastore should run in-memory for the sake of this test.
+6. The final result should be executable as a standalone program (should not require a pre-installed container/server).
+7. Demonstrate with tests that the API works as expected.
 
 ## Technology stack
 - Java 11
