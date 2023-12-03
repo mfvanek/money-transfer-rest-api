@@ -6,7 +6,7 @@
 
     <groupId>test-accounts</groupId>
     <artifactId>test-accounts</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
+    <version>1.2.1</version>
 
     <properties>
         <java.version>11</java.version>
@@ -89,7 +89,7 @@
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.10</version>
+                <version>0.8.11</version>
                 <executions>
                     <execution>
                         <id>jacoco-initialize</id>
@@ -154,7 +154,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <version>1.18.28</version>
+            <version>1.18.30</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -165,7 +165,7 @@
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
-            <version>1.4.11</version>
+            <version>1.4.14</version>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
