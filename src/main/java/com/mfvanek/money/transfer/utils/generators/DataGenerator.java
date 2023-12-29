@@ -6,14 +6,12 @@
 package com.mfvanek.money.transfer.utils.generators;
 
 import com.mfvanek.money.transfer.repositories.Context;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
 
+@Slf4j
 public class DataGenerator {
-
-    private static final Logger logger = LoggerFactory.getLogger(DataGenerator.class);
 
     private final Context context;
     private int partiesCount = 100_000;
@@ -61,17 +59,13 @@ public class DataGenerator {
     }
 
     public void generate() {
-        try {
-            final List<Long> partyIds = generateParties();
-            final List<Long> accountIds = generateAccounts(partyIds);
-            if (initialTransactions) {
-                generateInitialTransactions(accountIds);
-                if (clientTransactionsCount > 0) {
-                    generateClientTransactions(accountIds);
-                }
+        final List<Long> partyIds = generateParties();
+        final List<Long> accountIds = generateAccounts(partyIds);
+        if (initialTransactions) {
+            generateInitialTransactions(accountIds);
+            if (clientTransactionsCount > 0) {
+                generateClientTransactions(accountIds);
             }
-        } catch (Exception e) {
-            logger.error(e.getLocalizedMessage(), e);
         }
     }
 
@@ -79,8 +73,8 @@ public class DataGenerator {
         final AbstractGenerator partyGenerator = new RandomPartyGenerator(context, partiesCount);
         final List<Long> partyIds = partyGenerator.generate();
         // Our bank already exists
-        logger.debug("Party ids count = {}", partyIds.size());
-        logger.debug("Party repository size = {}", context.getPartyRepository().size());
+        log.debug("Party ids count = {}", partyIds.size());
+        log.debug("Party repository size = {}", context.getPartyRepository().size());
         return partyIds;
     }
 
@@ -88,16 +82,16 @@ public class DataGenerator {
         final AbstractGenerator accountGenerator = new RandomAccountGenerator(context, partyIds, accountsPerClient);
         final List<Long> accountIds = accountGenerator.generate();
         // Our bank account already exists
-        logger.debug("Account ids count = {}", accountIds.size());
-        logger.debug("Account repository size = {}", context.getAccountsRepository().size());
+        log.debug("Account ids count = {}", accountIds.size());
+        log.debug("Account repository size = {}", context.getAccountsRepository().size());
         return accountIds;
     }
 
     private void generateInitialTransactions(final List<Long> accountIds) {
         final AbstractGenerator initialTransactionGenerator = new InitialTransactionGenerator(context, accountIds, runImmediately);
         final List<Long> initialTrnIds = initialTransactionGenerator.generate();
-        logger.debug("Initial transaction ids count = {}", initialTrnIds.size());
-        logger.debug("Transaction repository size = {}", context.getTransactionRepository().size());
+        log.debug("Initial transaction ids count = {}", initialTrnIds.size());
+        log.debug("Transaction repository size = {}", context.getTransactionRepository().size());
         context.getAccountsRepository().validateBalance();
     }
 
@@ -105,8 +99,8 @@ public class DataGenerator {
         final AbstractGenerator transactionGenerator = new RandomTransactionGenerator(
                 context, accountIds, runImmediately, 10, clientTransactionsCount);
         final List<Long> trnIds = transactionGenerator.generate();
-        logger.debug("Transaction ids count = {}", trnIds.size());
-        logger.debug("Transaction repository size = {}", context.getTransactionRepository().size());
+        log.debug("Transaction ids count = {}", trnIds.size());
+        log.debug("Transaction repository size = {}", context.getTransactionRepository().size());
         context.getAccountsRepository().validateBalance();
     }
 

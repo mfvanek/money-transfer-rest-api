@@ -10,6 +10,7 @@ import com.mfvanek.money.transfer.interfaces.Transaction;
 import com.mfvanek.money.transfer.interfaces.repositories.AccountsRepository;
 import com.mfvanek.money.transfer.repositories.Context;
 import com.mfvanek.money.transfer.utils.TransactionUtils;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.tuple.Pair;
 
 import java.math.BigDecimal;
@@ -19,6 +20,7 @@ import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+@Slf4j
 class RandomTransactionGenerator extends AbstractGenerator {
 
     private final int trnCount;
@@ -59,10 +61,10 @@ class RandomTransactionGenerator extends AbstractGenerator {
                 }
                 ids.add(transaction.getId());
             } else {
-                logger.error("Credit account with id = {} not found", randomIds.getRight());
+                log.error("Credit account with id = {} not found", randomIds.getRight());
             }
         } else {
-            logger.error("Debit account with id = {} not found", randomIds.getLeft());
+            log.error("Debit account with id = {} not found", randomIds.getLeft());
         }
     }
 }

@@ -10,6 +10,7 @@ import com.mfvanek.money.transfer.utils.validators.Validator;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
 
+import java.util.Locale;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -40,7 +41,7 @@ public class BaseCurrency implements Currency {
         Objects.requireNonNull(isoCode, "Currency code cannot be null");
         Validator.validateCurrencyCode(isoCode);
 
-        final String code = isoCode.toUpperCase();
+        final String code = isoCode.toUpperCase(Locale.ROOT);
         Currency currency = CURRENCIES.get(code);
         if (currency == null) {
             currency = CURRENCIES.computeIfAbsent(code, (k) -> new BaseCurrency(code));

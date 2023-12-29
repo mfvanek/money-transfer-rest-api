@@ -9,10 +9,10 @@ import com.mfvanek.money.transfer.interfaces.Identifiable;
 import com.mfvanek.money.transfer.interfaces.repositories.PagedResult;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -88,7 +88,7 @@ class PagedResultImplTest {
     }
 
     private static Deque<Integer> integers() {
-        return new LinkedList<>(Arrays.asList(1, 2, 3, 4, 5));
+        return new ArrayDeque<>(Arrays.asList(1, 2, 3, 4, 5));
     }
 
     private static Map<Long, Identifiable> make() {

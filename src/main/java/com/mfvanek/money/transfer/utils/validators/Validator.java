@@ -54,7 +54,7 @@ public class Validator {
         }
     }
 
-    public static <T> void validatePagination(final int pageNumber, final int recordsPerPage) {
+    public static void validatePagination(final int pageNumber, final int recordsPerPage) {
         if (pageNumber < 1) {
             throw new IllegalArgumentException("Page number should be positive and starts with 1");
         }

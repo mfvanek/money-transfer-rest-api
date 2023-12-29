@@ -8,10 +8,10 @@ package com.mfvanek.money.transfer.utils;
 import com.google.gson.Gson;
 import lombok.Getter;
 import lombok.ToString;
+import lombok.experimental.UtilityClass;
 
+@UtilityClass
 public final class JsonUtils {
-
-    private JsonUtils() {}
 
     public static Gson make() {
         return new Gson().newBuilder().setPrettyPrinting().create();

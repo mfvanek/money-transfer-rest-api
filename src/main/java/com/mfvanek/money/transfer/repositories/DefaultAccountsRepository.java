@@ -10,27 +10,24 @@ import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.Currency;
 import com.mfvanek.money.transfer.interfaces.Party;
 import com.mfvanek.money.transfer.interfaces.repositories.AccountsRepository;
-import com.mfvanek.money.transfer.interfaces.repositories.Cleanable;
 import com.mfvanek.money.transfer.interfaces.repositories.PagedResult;
 import com.mfvanek.money.transfer.interfaces.repositories.PartyRepository;
 import com.mfvanek.money.transfer.models.accounts.AbstractAccount;
 import com.mfvanek.money.transfer.models.currencies.BaseCurrency;
 import com.mfvanek.money.transfer.utils.validators.Validator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 
+@Slf4j
 final class DefaultAccountsRepository implements AccountsRepository {
 
-    private static final Logger logger = LoggerFactory.getLogger(DefaultAccountsRepository.class);
     private static final BigDecimal INITIAL_BALANCE = BigDecimal.valueOf(100_000_000.00d);
 
     private final AtomicLong counter;
@@ -111,10 +108,10 @@ final class DefaultAccountsRepository implements AccountsRepository {
             if (totalSum.compareTo(expected) != 0) {
                 throw new InvalidBalanceException(expected, totalSum);
             }
-            logger.debug("Balance is valid! {} == {}", expected, totalSum);
+            log.debug("Balance is valid! {} == {}", expected, totalSum);
         } finally {
             final long timeEnd = System.nanoTime();
-            logger.info("Balance validation is completed. Time elapsed = {} microseconds", (timeEnd - timeStart) / 1_000);
+            log.info("Balance validation is completed. Time elapsed = {} microseconds", (timeEnd - timeStart) / 1_000);
         }
     }
 
@@ -125,11 +122,10 @@ final class DefaultAccountsRepository implements AccountsRepository {
 
     @Override
     public Collection<Account> getByHolder(Party holder) {
-        return Collections.unmodifiableCollection(
-                accounts.values().stream()
+        return accounts.values().stream()
                 .filter(a -> a.getHolder().equals(holder))
                 .sorted(Comparator.comparing(Account::getId))
-                .collect(Collectors.toList()));
+                .collect(Collectors.toUnmodifiableList());
     }
 
     @Override

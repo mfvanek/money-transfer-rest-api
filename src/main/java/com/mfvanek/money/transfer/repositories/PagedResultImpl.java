@@ -10,11 +10,11 @@ import com.mfvanek.money.transfer.interfaces.repositories.PagedResult;
 import com.mfvanek.money.transfer.utils.validators.Validator;
 import lombok.ToString;
 
+import java.util.ArrayDeque;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Deque;
-import java.util.LinkedList;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Predicate;
@@ -74,9 +74,9 @@ public class PagedResultImpl<T> implements PagedResult<T> {
         Objects.requireNonNull(content, "Content cannot be null");
         final Deque<T> pagedContent = content.values().stream()
                 .sorted(Comparator.comparing(T::getId))
-                .skip(recordsPerPage * (pageNumber - 1))
+                .skip((long) recordsPerPage * (pageNumber - 1))
                 .limit(recordsPerPage + 1)
-                .collect(Collectors.toCollection(LinkedList::new));
+                .collect(Collectors.toCollection(ArrayDeque::new));
         return PagedResultImpl.of(pageNumber, recordsPerPage, pagedContent);
     }
 
@@ -87,9 +87,9 @@ public class PagedResultImpl<T> implements PagedResult<T> {
         final Deque<T> pagedContent = content.values().stream()
                 .filter(predicate)
                 .sorted(Comparator.comparing(T::getId))
-                .skip(recordsPerPage * (pageNumber - 1))
+                .skip((long) recordsPerPage * (pageNumber - 1))
                 .limit(recordsPerPage + 1)
-                .collect(Collectors.toCollection(LinkedList::new));
+                .collect(Collectors.toCollection(ArrayDeque::new));
         return PagedResultImpl.of(pageNumber, recordsPerPage, pagedContent);
     }
 }

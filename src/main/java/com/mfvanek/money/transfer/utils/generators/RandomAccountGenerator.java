@@ -9,6 +9,7 @@ import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.Party;
 import com.mfvanek.money.transfer.interfaces.repositories.AccountsRepository;
 import com.mfvanek.money.transfer.repositories.Context;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import java.util.Objects;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
 
+@Slf4j
 class RandomAccountGenerator extends AbstractGenerator {
 
     private final int accountsPerClient;
@@ -50,7 +52,7 @@ class RandomAccountGenerator extends AbstractGenerator {
                 ids.add(a.getId());
             }
         } else {
-            logger.error("Party with id = {} not found", partyId);
+            log.error("Party with id = {} not found", partyId);
         }
     }
 

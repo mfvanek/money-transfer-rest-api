@@ -15,9 +15,9 @@ import lombok.Getter;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
+@Getter
 public final class Bank {
 
-    @Getter
     private final Context context;
 
     private Bank(Context context) {

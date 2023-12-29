@@ -35,7 +35,7 @@ final class InvalidTransaction extends MoneyTransaction {
     }
 
     @Override
-    public final boolean run() {
+    public boolean run() {
         return false;
     }
 
