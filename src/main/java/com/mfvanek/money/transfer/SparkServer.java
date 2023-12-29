@@ -16,8 +16,7 @@ import com.mfvanek.money.transfer.utils.Bank;
 import com.mfvanek.money.transfer.utils.JsonUtils;
 import com.mfvanek.money.transfer.utils.PaginationParams;
 import com.mfvanek.money.transfer.utils.TransactionPayload;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import spark.Request;
 import spark.Response;
 import spark.Spark;
@@ -25,10 +24,10 @@ import spark.Spark;
 import javax.servlet.http.HttpServletResponse;
 import java.util.NoSuchElementException;
 
+@Slf4j
 final class SparkServer {
 
     private static final String WITHOUT_DATA = "do_not_generate_data";
-    private static final Logger logger = LoggerFactory.getLogger(SparkServer.class);
 
     static void start() {
         final String[] args = {WITHOUT_DATA};
@@ -154,8 +153,8 @@ final class SparkServer {
 
         try {
             Bank.getInstance().generateData();
-        } catch (Exception e) {
-            logger.error(e.getLocalizedMessage(), e);
+        } catch (RuntimeException e) {
+            log.error("Error occurred while generating data", e);
         }
     }
 

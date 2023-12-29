@@ -10,8 +10,7 @@ import com.mfvanek.money.transfer.enums.TransactionState;
 import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.Transaction;
 import com.mfvanek.money.transfer.utils.validators.Validator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -19,9 +18,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 
 // TODO Add DateCreated and LastModifiedDate
+@Slf4j
 public class MoneyTransaction implements Transaction {
-
-    private static final Logger logger = LoggerFactory.getLogger(MoneyTransaction.class);
 
     private final Long id;
     private final Account debit;
@@ -92,7 +90,7 @@ public class MoneyTransaction implements Transaction {
                             if (debit.debit(amount)) {
                                 if (credit.credit(amount)) {
                                     state = TransactionState.COMPLETED;
-                                    logger.trace("Transaction {} completed", id);
+                                    log.trace("Transaction {} completed", id);
                                     return true;
                                 }
                             }
@@ -111,7 +109,8 @@ public class MoneyTransaction implements Transaction {
             }
         } catch (InterruptedException e) {
             state = TransactionState.CONCURRENCY_ERROR;
-            logger.error(e.getLocalizedMessage(), e);
+            log.error("Error occurred inside transaction", e);
+            Thread.currentThread().interrupt();
         }
         return false;
     }
@@ -121,6 +120,9 @@ public class MoneyTransaction implements Transaction {
             case INSUFFICIENT_FUNDS:
             case CONCURRENCY_ERROR:
                 state = TransactionState.RESTARTED;
+                break;
+            default:
+                // nothing to do
                 break;
         }
     }

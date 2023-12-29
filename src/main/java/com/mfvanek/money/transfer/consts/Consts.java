@@ -5,9 +5,10 @@
 
 package com.mfvanek.money.transfer.consts;
 
-public class Consts {
+import lombok.experimental.UtilityClass;
 
-    private Consts() {}
+@UtilityClass
+public class Consts {
 
     public static final long ACCOUNT_WAIT_INTERVAL = 10L; // in milliseconds
 }

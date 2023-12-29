@@ -11,15 +11,11 @@ import lombok.Getter;
 
 import java.util.Objects;
 
+@Getter
 public abstract class AbstractParty implements Party {
 
-    @Getter
     private final Long id;
-
-    @Getter
     private final PartyType partyType;
-
-    @Getter
     private final String taxIdentificationNumber;
 
     AbstractParty(Long id, PartyType partyType, String taxIdentificationNumber) {
@@ -32,10 +28,12 @@ public abstract class AbstractParty implements Party {
         this.taxIdentificationNumber = taxIdentificationNumber;
     }
 
+    @Override
     public final boolean isPrivatePerson() {
         return PartyType.PRIVATE_PERSON == partyType;
     }
 
+    @Override
     public final boolean isLegalPerson() {
         return PartyType.LEGAL_PERSON == partyType;
     }

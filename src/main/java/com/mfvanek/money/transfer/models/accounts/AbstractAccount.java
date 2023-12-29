@@ -10,8 +10,7 @@ import com.mfvanek.money.transfer.interfaces.Account;
 import com.mfvanek.money.transfer.interfaces.Currency;
 import com.mfvanek.money.transfer.interfaces.Party;
 import com.mfvanek.money.transfer.utils.validators.Validator;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;
 import java.util.Objects;
@@ -19,9 +18,8 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+@Slf4j
 public abstract class AbstractAccount implements Account {
-
-    private static final Logger logger = LoggerFactory.getLogger(AbstractAccount.class);
 
     private final Long id;
     private final Currency currency;
@@ -66,8 +64,8 @@ public abstract class AbstractAccount implements Account {
 
     @Override
     public final BigDecimal getBalance() {
+        lock.lock();
         try {
-            lock.lock();
             return balance;
         } finally {
             lock.unlock();
@@ -91,7 +89,8 @@ public abstract class AbstractAccount implements Account {
                 }
             }
         } catch (InterruptedException e) {
-            logger.error(e.getLocalizedMessage(), e);
+            log.error("Error occurred while debiting account", e);
+            Thread.currentThread().interrupt();
         }
         return false;
     }
@@ -110,7 +109,8 @@ public abstract class AbstractAccount implements Account {
                 }
             }
         } catch (InterruptedException e) {
-            logger.error(e.getLocalizedMessage(), e);
+            log.error("Error occurred while crediting account", e);
+            Thread.currentThread().interrupt();
         }
         return true;
     }
