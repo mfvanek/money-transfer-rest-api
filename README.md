@@ -32,7 +32,9 @@ Design and implement a RESTful API (including data model and the backing impleme
 - [Apache HttpClient](https://hc.apache.org/index.html) (for unit testing)
 
 ## How to run
-- java -jar ".\target\test-accounts-1.0-SNAPSHOT.jar"
+```shell
+java -jar "./rest-api-app/target/rest-api-app-1.3.0.jar"
+```
 
 ## Available services
 - GET [http://localhost:9999/parties?limit=10](http://localhost:9999/parties?limit=10)
