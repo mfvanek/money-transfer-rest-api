@@ -12,6 +12,7 @@
     <modules>
         <module>rest-api-app</module>
         <module>core</module>
+        <module>jacoco-report-aggregator</module>
     </modules>
 
     <properties>
@@ -54,8 +55,10 @@
             </dependency>
             <dependency>
                 <groupId>org.assertj</groupId>
-                <artifactId>assertj-core</artifactId>
+                <artifactId>assertj-bom</artifactId>
                 <version>3.24.2</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -111,6 +114,11 @@
                     <groupId>org.jacoco</groupId>
                     <artifactId>jacoco-maven-plugin</artifactId>
                     <version>0.8.11</version>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>3.6.1</version>
                 </plugin>
             </plugins>
         </pluginManagement>

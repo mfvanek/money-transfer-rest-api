@@ -100,12 +100,31 @@
                                             <value>COVEREDRATIO</value>
                                             <minimum>0.00</minimum>
                                         </limit>
+                                        <limit>
+                                            <counter>CLASS</counter>
+                                            <value>MISSEDCOUNT</value>
+                                            <maximum>6</maximum>
+                                        </limit>
+                                        <limit>
+                                            <counter>METHOD</counter>
+                                            <value>MISSEDCOUNT</value>
+                                            <maximum>6</maximum>
+                                        </limit>
+                                        <limit>
+                                            <counter>LINE</counter>
+                                            <value>MISSEDCOUNT</value>
+                                            <maximum>13</maximum>
+                                        </limit>
                                     </limits>
                                 </rule>
                             </rules>
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
