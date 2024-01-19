@@ -4,9 +4,11 @@ updates:
         directory: "/"
         schedule:
             interval: "weekly"
+            day: "tuesday"
         open-pull-requests-limit: 10
     -   package-ecosystem: "maven"
         directory: "/"
         schedule:
             interval: "weekly"
+            day: "tuesday"
         open-pull-requests-limit: 10
